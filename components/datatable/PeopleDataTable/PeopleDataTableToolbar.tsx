@@ -4,6 +4,13 @@ import { Cross2Icon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/Button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/Select"
 import { Input } from "@/components/ui/input"
 
 import { DataTableViewOptions } from "../common/DataTableViewOptions"
@@ -22,12 +29,31 @@ export function PeopleDataTableToolbar<TData>({
       <div className="flex flex-1 items-center space-x-2">
         <Input
           placeholder="Search name..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
+        <Select
+          value={
+            (table.getColumn("gender")?.getFilterValue() as string) ?? "all"
+          }
+          onValueChange={(value) => {
+            if (value === "all")
+              table.getColumn("gender")?.setFilterValue(undefined)
+            else table.getColumn("gender")?.setFilterValue(value)
+          }}
+        >
+          <SelectTrigger className="w-[100px] h-8">
+            <SelectValue placeholder="All" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="male">Male</SelectItem>
+            <SelectItem value="female">Female</SelectItem>
+          </SelectContent>
+        </Select>
 
         {isFiltered && (
           <Button

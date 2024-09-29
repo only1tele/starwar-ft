@@ -10,7 +10,9 @@ export const getPeople = async (
   size = StarwarsConstants.DEFAULT_PAGE_SIZE
 ) => {
   try {
-    const response = await Request.get<GetPeopleResponse>(Endpoints.getPeople)
+    const response = await Request.get<GetPeopleResponse>(Endpoints.getPeople, {
+      params: { page, size },
+    })
     return response
   } catch (error) {
     handleRequestError(error)

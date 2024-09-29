@@ -2,7 +2,7 @@ export interface GetPeopleResponse {
   count: number
   next: number | null
   prev: number | null
-  records: Array<{ people: Array<People> }>
+  results: Array<People>
 }
 
 export interface People {

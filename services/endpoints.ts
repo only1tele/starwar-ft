@@ -1,5 +1,4 @@
-export const API_BASE_URL = process.env.REACT_APP_BASE_URL
-
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 export class Endpoints {
   static getPeople = API_BASE_URL + "/people"
   static getPeopleById = (id: string) => API_BASE_URL + `/people/${id}`

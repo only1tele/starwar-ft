@@ -50,6 +50,10 @@ export const columns: ColumnDef<any>[] = [
         </div>
       )
     },
+    filterFn: (row, columnId, filterValue) => {
+      if (!filterValue) return true
+      return row.getValue(columnId) === filterValue
+    },
   },
   {
     accessorKey: "created",
