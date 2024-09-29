@@ -32,7 +32,7 @@ export function DataTablePagination({ tableParams }: DataTablePaginationProps) {
   const totalPages = Math.ceil(totalCount / pageSize)
 
   return (
-    <div className="flex items-center justify-between px-2">
+    <div className="flex items-center justify-between">
       <div className="flex items-center space-x-2">
         <p className="text-sm font-medium">Rows per page</p>
         <Select value={`${pageSize}`} onValueChange={(value) => {}}>
