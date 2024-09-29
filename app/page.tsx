@@ -1,45 +1,70 @@
-import { PeopleDataTable } from "../components/datatable/PeopleDataTable/PeopleDataTable"
-import { columns } from "../components/datatable/PeopleDataTable/PeopleDataTableColumns"
+"use client"
 
-const data = [
-  {
-    name: "Chewbacca",
-    height: "228",
-    mass: "112",
-    hair_color: "brown",
-    skin_color: "unknown",
-    eye_color: "blue",
-    birth_year: "200BBY",
-    gender: "male",
-    created: "2014-12-10T16:42:45.066000Z",
-  },
-  {
-    name: "Han Solo",
-    height: "180",
-    mass: "80",
-    hair_color: "brown",
-    skin_color: "fair",
-    eye_color: "brown",
-    birth_year: "29BBY",
-    gender: "male",
-    created: "2014-12-10T16:49:14.582000Z",
-  },
-  {
-    name: "Greedo",
-    height: "173",
-    mass: "74",
-    hair_color: "n/a",
-    skin_color: "green",
-    eye_color: "black",
-    birth_year: "44BBY",
-    gender: "male",
-    created: "2014-12-10T17:03:30.334000Z",
-  },
-]
-export default function IndexPage() {
+import { FC, useEffect, useState } from "react"
+import { getPeople } from "@/services/people"
+import { People } from "@/services/people/types"
+
+import { PeopleDataTable } from "@/components/datatable/PeopleDataTable/PeopleDataTable"
+import { columns } from "@/components/datatable/PeopleDataTable/PeopleDataTableColumns"
+
+interface TableParams {
+  pagination: {
+    current: number
+    pageSize: number
+    totalCount: number
+    onPageChange: (page: number) => void
+  }
+}
+const IndexPage: FC = () => {
+  const [data, setData] = useState<Array<People>>([])
+  const [loading, setLoading] = useState(false)
+  const [tableParams, setTableParams] = useState<TableParams>({
+    pagination: {
+      current: 1,
+      pageSize: 10,
+      totalCount: 0,
+      onPageChange: (newPage: number) => {
+        setTableParams((prev) => ({
+          ...prev,
+          pagination: {
+            ...prev.pagination,
+            current: newPage,
+          },
+        }))
+      },
+    },
+  })
+
+  const fetchData = async () => {
+    setLoading(true)
+    const response = await getPeople(tableParams.pagination.current)
+    setLoading(false)
+    if (response) {
+      setData(response.results)
+      setTableParams((prev) => ({
+        ...prev,
+        pagination: {
+          ...prev.pagination,
+          totalCount: response.count,
+        },
+      }))
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [tableParams.pagination.current])
+
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 space-x-4">
-      <PeopleDataTable columns={columns} data={data} />
+      <PeopleDataTable
+        columns={columns}
+        data={data}
+        loading={loading}
+        tableParams={tableParams}
+      />
     </section>
   )
 }
+
+export default IndexPage
