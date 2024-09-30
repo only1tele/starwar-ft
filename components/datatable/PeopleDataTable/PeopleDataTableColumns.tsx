@@ -13,10 +13,8 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
-            {row.getValue("name")}
-          </span>
+        <div className="flex space-x-2 w-[250px]">
+          <span className=" truncate font-medium">{row.getValue("name")}</span>
         </div>
       )
     },
@@ -28,8 +26,8 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+        <div className="flex space-x-2 w-[100px]">
+          <span className="truncate font-medium capitalize">
             {row.getValue("birth_year")}
           </span>
         </div>
@@ -43,8 +41,8 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+        <div className="flex space-x-2 w-[120px]">
+          <span className="truncate font-medium capitalize">
             {row.getValue("gender")}
           </span>
         </div>
@@ -62,8 +60,8 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+        <div className="flex space-x-2 w-[100px]">
+          <span className="max-w-[100px] truncate font-medium capitalize">
             {moment(row.getValue("created")).format("MMM DD, YYYY") || ""}
           </span>
         </div>

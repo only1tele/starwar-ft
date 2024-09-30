@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { getPeopleById } from "@/services/people"
 import { People } from "@/services/people/types"
 import { Copy, Loader } from "lucide-react"
@@ -30,13 +31,12 @@ import IF from "@/components/IF"
 const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
   const [data, setData] = useState<People>()
   const [loading, setLoading] = useState(false)
+
   const fetchData = async () => {
     setLoading(true)
     const response = await getPeopleById(params?.id)
     setLoading(false)
-    if (response) {
-      setData(response)
-    }
+    if (response) setData(response)
   }
 
   useEffect(() => {

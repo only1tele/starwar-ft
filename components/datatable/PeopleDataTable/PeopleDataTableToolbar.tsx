@@ -46,10 +46,10 @@ export function PeopleDataTableToolbar<TData>({
           }}
         >
           <SelectTrigger className="w-[100px] h-8">
-            <SelectValue placeholder="All" />
+            <SelectValue placeholder="All genders" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="all">All </SelectItem>
             <SelectItem value="male">Male</SelectItem>
             <SelectItem value="female">Female</SelectItem>
           </SelectContent>
