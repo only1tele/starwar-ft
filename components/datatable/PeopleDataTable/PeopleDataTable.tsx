@@ -45,8 +45,8 @@ export function PeopleDataTable<TData>({
     getFilteredRowModel: getFilteredRowModel(),
   })
   const router = useRouter()
-  const handleNavigation = (index: number) => {
-    router.push(`/people/${index + 1}`)
+  const handleNavigation = (id: string) => {
+    router.push(`/people/${id}`)
   }
   return (
     <div className="space-y-4">
@@ -73,7 +73,7 @@ export function PeopleDataTable<TData>({
                 <TableRow
                   key={row.id}
                   className="cursor-pointer"
-                  onClick={() => handleNavigation(index)}
+                  onClick={() => handleNavigation(row.original?.id)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
