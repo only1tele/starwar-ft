@@ -13,7 +13,7 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2 w-[250px]">
+        <div className="flex space-x-2 max-w-[250px] md:w-[250px]">
           <span className=" truncate font-medium">{row.getValue("name")}</span>
         </div>
       )
@@ -26,7 +26,7 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2 w-[100px]">
+        <div className="flex space-x-2 max-w-[100px] md:w-[100px]">
           <span className="truncate font-medium capitalize">
             {row.getValue("birth_year")}
           </span>
@@ -41,7 +41,7 @@ export const columns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2 w-[120px]">
+        <div className="flex space-x-2 max-w-[120px] md:w-[120px]">
           <span className="truncate font-medium capitalize">
             {row.getValue("gender")}
           </span>

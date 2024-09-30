@@ -52,7 +52,7 @@ export function PeopleDataTable<TData>({
     <div className="space-y-4">
       <PeopleDataTableToolbar table={table} />
       <div className="rounded-md border">
-        <Table>
+        <Table className="table-fixed w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
