@@ -59,7 +59,7 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
         </div>
       </IF>
       <IF condition={!loading}>
-        <Breadcrumb className="hidden md:flex">
+        <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
