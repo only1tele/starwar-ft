@@ -8,6 +8,14 @@ import { People } from "@/services/people/types"
 import { ChevronLeft, Copy, Loader } from "lucide-react"
 import moment from "moment"
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/Breadcrumb"
 import { Button } from "@/components/ui/Button"
 import {
   Card,
@@ -18,14 +26,6 @@ import {
   CardTitle,
 } from "@/components/ui/Card"
 import { Separator } from "@/components/ui/Separator"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
 import IF from "@/components/IF"
 
 const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
@@ -134,7 +134,7 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
           </CardContent>
           <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
             <div className="text-xs text-muted-foreground">
-              Created <time>{formatDate(data?.created)}</time>
+              Created <time>{formatDate(data?.created || "")}</time>
             </div>
           </CardFooter>
         </Card>
