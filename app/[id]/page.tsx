@@ -119,7 +119,7 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
                 <div className="font-semibold">Homeworld </div>
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Name</span>
-                  <span className="capitalize">{data?.name}</span>
+                  <span className="capitalize">{data?.homeworld}</span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Climate</span>
