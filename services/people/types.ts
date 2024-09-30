@@ -14,6 +14,7 @@ export interface People {
   eye_color: string
   birth_year: string
   gender: string
+  homeworld: string
   created: string
 }
 
