@@ -33,7 +33,7 @@ export function DataTablePagination({ tableParams }: DataTablePaginationProps) {
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center space-x-2">
+      <div className="hidden md:flex items-center space-x-2">
         <p className="text-sm font-medium">Rows per page</p>
         <Select value={`${pageSize}`} onValueChange={(value) => {}}>
           <SelectTrigger className="h-8 w-[70px]">
