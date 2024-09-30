@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { getPeopleById } from "@/services/people"
 import { People } from "@/services/people/types"
-import { Copy, Loader } from "lucide-react"
+import { ChevronLeft, Copy, Loader } from "lucide-react"
 import moment from "moment"
 
 import { Button } from "@/components/ui/Button"
@@ -29,6 +29,7 @@ import {
 import IF from "@/components/IF"
 
 const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
+  const router = useRouter()
   const [data, setData] = useState<People>()
   const [loading, setLoading] = useState(false)
 
@@ -45,6 +46,10 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
 
   function formatDate(date: string) {
     return moment(date).format("MMM DD, YYYY")
+  }
+
+  const handleNavigation = () => {
+    router.push(`/`)
   }
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
@@ -72,19 +77,16 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
           <CardHeader className="flex flex-row items-start bg-muted/50">
             <div className="grid gap-0.5">
               <CardTitle className="group flex items-center gap-2 text-lg">
-                {data?.name}
                 <Button
-                  size="icon"
                   variant="outline"
-                  className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
+                  size="icon"
+                  className="h-7 w-7"
+                  onClick={handleNavigation}
                 >
-                  <Copy className="h-3 w-3" />
-                  <span className="sr-only">Copy Order ID</span>
+                  <ChevronLeft className="h-4 w-4" />
                 </Button>
+                {data?.name}
               </CardTitle>
-              <CardDescription>
-                Date: {formatDate(data?.created)}
-              </CardDescription>
             </div>
           </CardHeader>
           <CardContent className="p-6 text-sm">
@@ -132,7 +134,7 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
           </CardContent>
           <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
             <div className="text-xs text-muted-foreground">
-              Updated <time>{formatDate(data?.created)}</time>
+              Created <time>{formatDate(data?.created)}</time>
             </div>
           </CardFooter>
         </Card>
