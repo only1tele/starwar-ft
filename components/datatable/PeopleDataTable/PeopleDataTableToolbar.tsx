@@ -4,6 +4,7 @@ import { Cross2Icon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
 import {
   Select,
   SelectContent,
@@ -11,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select"
-import { Input } from "@/components/ui/input"
 
 import { DataTableViewOptions } from "../common/DataTableViewOptions"
 
@@ -45,11 +45,11 @@ export function PeopleDataTableToolbar<TData>({
             else table.getColumn("gender")?.setFilterValue(value)
           }}
         >
-          <SelectTrigger className="w-[100px] h-8">
+          <SelectTrigger className="w-[120px] h-8">
             <SelectValue placeholder="All genders" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All </SelectItem>
+            <SelectItem value="all">All Gender</SelectItem>
             <SelectItem value="male">Male</SelectItem>
             <SelectItem value="female">Female</SelectItem>
           </SelectContent>

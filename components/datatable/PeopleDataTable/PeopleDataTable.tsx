@@ -73,7 +73,9 @@ export function PeopleDataTable<TData>({
                 <TableRow
                   key={row.id}
                   className="cursor-pointer"
-                  onClick={() => handleNavigation(row.original?.id)}
+                  onClick={() =>
+                    handleNavigation((row.original as { id: string }).id)
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -98,7 +100,8 @@ export function PeopleDataTable<TData>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination tableParams={tableParams} />
+
+      <DataTablePagination tableParams={tableParams as any} />
     </div>
   )
 }
