@@ -56,7 +56,9 @@ const IndexPage: FC = () => {
   }, [tableParams.pagination.current])
 
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 space-x-4">
+    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+      <h1 className="text-lg font-semibold md:text-2xl">People</h1>
+
       <PeopleDataTable
         columns={columns}
         data={data}

@@ -4,6 +4,15 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  async rewrites() {
+    return [
+      {
+        source: '/people/:id',
+        destination: '/:id',
+      },
+    ];
+  },
 
-export default nextConfig
+};
+
+export default nextConfig;

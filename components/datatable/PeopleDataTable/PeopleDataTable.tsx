@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import { People } from "@/services/people/types"
 import {
   ColumnDef,
@@ -43,7 +44,10 @@ export function PeopleDataTable<TData>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   })
-
+  const router = useRouter()
+  const handleNavigation = (index: number) => {
+    router.push(`/people/${index + 1}`)
+  }
   return (
     <div className="space-y-4">
       <PeopleDataTableToolbar table={table} />
@@ -65,8 +69,12 @@ export function PeopleDataTable<TData>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+              table.getRowModel().rows.map((row, index) => (
+                <TableRow
+                  key={row.id}
+                  className="cursor-pointer"
+                  onClick={() => handleNavigation(index)}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
