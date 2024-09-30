@@ -50,19 +50,13 @@ This is the frontend part of the Star Wars project that displays Star Wars chara
    npm install
    ```
 
-4. Create a `.env.local` file at the root with:
-
-   ```env
-   NEXT_PUBLIC_API_URL=http://localhost:3007/api
-   ```
-
-5. Start the development server:
+4. Start the development server:
 
    ```bash
    npm run dev
    ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Docker Setup
 
