@@ -17,7 +17,7 @@ interface TableParams {
 }
 const IndexPage: FC = () => {
   const [data, setData] = useState<Array<People>>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       current: 1,
