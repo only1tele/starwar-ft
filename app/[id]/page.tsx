@@ -27,14 +27,15 @@ import {
 } from "@/components/ui/Card"
 import { Separator } from "@/components/ui/Separator"
 import IF from "@/components/IF"
+import LoaderUI from "@/components/Loader"
 
 const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter()
   const [data, setData] = useState<People>()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const fetchData = async () => {
-    setLoading(true)
+    // setLoading(true)
     const response = await getPeopleById(params?.id)
     setLoading(false)
     if (response) setData(response)
@@ -54,9 +55,7 @@ const PeopleDetailsPage = ({ params }: { params: { id: string } }) => {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <IF condition={loading}>
-        <div className="flex justify-center items-center">
-          <Loader className="animate-spin h-8 w-8 text-muted-foreground" />
-        </div>
+        <LoaderUI />
       </IF>
       <IF condition={!loading}>
         <Breadcrumb>

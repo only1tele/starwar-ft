@@ -1,10 +1,13 @@
 import { useRouter } from "next/navigation"
-import { People } from "@/services/people/types"
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
   getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
 
@@ -16,6 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table"
+import LoaderUI from "@/components/Loader"
 
 import { DataTablePagination } from "../common/DataTablePagination"
 import { PeopleDataTableToolbar } from "./PeopleDataTableToolbar"
@@ -24,6 +28,7 @@ interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
   data: TData[]
   loading: boolean
+  error?: string | null
   tableParams: {
     pagination: {
       current: number
@@ -36,18 +41,27 @@ export function PeopleDataTable<TData>({
   columns,
   data,
   loading,
+  error,
   tableParams,
 }: DataTableProps<TData>) {
   const table = useReactTable({
     data,
     columns,
+    enableRowSelection: true,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
   })
+
   const router = useRouter()
+
   const handleNavigation = (id: string) => {
     router.push(`/people/${id}`)
   }
+
   return (
     <div className="space-y-4">
       <PeopleDataTableToolbar table={table} />
@@ -68,8 +82,17 @@ export function PeopleDataTable<TData>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row, index) => (
+            {loading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  <LoaderUI />
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   className="cursor-pointer"
@@ -93,7 +116,7 @@ export function PeopleDataTable<TData>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  No data available.
                 </TableCell>
               </TableRow>
             )}

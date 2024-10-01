@@ -33,6 +33,9 @@ export const columns: ColumnDef<any>[] = [
         </div>
       )
     },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
   },
   {
     accessorKey: "gender",
